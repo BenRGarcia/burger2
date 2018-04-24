@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         isAlpha: true
       }
     },
-    devoured: {
+    isDevoured: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
