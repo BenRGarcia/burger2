@@ -9,6 +9,7 @@ const getBurgers = (req, res, next) => {
   models.Burger
     // ...for all burgers...
     .findAll({
+      attributes: ['id', 'burger_name', 'is_devoured'],
       // ...and their associated customer names...
       include: [models.Customer],
       // ...and order alphabetically by burger name
@@ -17,13 +18,28 @@ const getBurgers = (req, res, next) => {
       ]
     })
     // Compose array of burger objects
-    .then(burgers => {
-      // Debugging
-      console.log(burgers);
-      // Attach array of burgers to request body
-      req.body.burgers = burgers;
+    .then(resp => {
+      console.log(resp);
+      // Test if any burgers returned from DB
+      if (resp.length > 0) {
+        const burgers = resp;
+        // Customer name and index 0: burgers[0].dataValues.Customer.dataValues.customer_name
+        // Attach array of burgers to request body
+        req.body.burgers = burgers;
+      }
       // Call next middleware in stack
       next();
+
+
+      // The perfect response object:
+      const perfectResponseObj = {
+        id: 1,
+        burger_name: "Big Mac",
+        isDevoured: false,
+        customer_name: "Ben"
+      };
+
+
     })
     // Catch and handle errors
     .catch(err => {
