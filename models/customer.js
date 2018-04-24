@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     customer_name: {
       type: DataTypes.STRING,
       validate: {
-        notNull: true,
         len: [1,64],
         isAlpha: true
       }
