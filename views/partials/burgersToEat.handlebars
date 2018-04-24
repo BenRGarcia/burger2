@@ -2,17 +2,19 @@
   <h2>
     2) Eat Burgers Here
   </h2>
-    <ul class="text-left">
+    <ul class="text-center">
       {{#each burgers}}
         {{#unless is_devoured}}
           <li>
+            {{burger_name}} 
+            ordered by 
+            {{customer_name}} 
             <button
               class="btn devour"
-              data-burger="{{burger_name}}"
+              data-burger="{{id}}"
             >
               Eat Now
             </button> 
-            {{burger_name}}
           </li>
         {{/unless}}
       {{/each}}
