@@ -4,9 +4,6 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const models = require('./models');
 
-// Env variables
-require('dotenv').config()
-
 // Instantiate server
 const app = express();
 
@@ -42,7 +39,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// error handler (don't send stack trace unless in dev environment )
+// error handler (won't send stack trace unless in dev environment )
 app.use((err, req, res, next) => {
   res
     .status(err.status || 500)
