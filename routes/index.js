@@ -19,11 +19,20 @@ const getBurgers = (req, res, next) => {
     })
     // Compose array of burger objects
     .then(resp => {
-      console.log(resp);
       // Test if any burgers returned from DB
       if (resp.length > 0) {
-        const burgers = resp;
         // Customer name and index 0: burgers[0].dataValues.Customer.dataValues.customer_name
+        let burgers = resp.map((burgerObj, index) => {
+          let b = burgerObj.dataValues;
+          let burger = {
+            id: b.id,
+            burger_name: b.burger_name,
+            is_devoured: b.is_devoured,
+            customer_name: b.Customer.dataValues.customer_name
+          };
+          return burger;
+        });
+        console.log(burgers);
         // Attach array of burgers to request body
         req.body.burgers = burgers;
       }
