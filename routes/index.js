@@ -21,8 +21,8 @@ const getBurgers = (req, res, next) => {
     .then(resp => {
       // Test if any burgers returned from DB
       if (resp.length > 0) {
-        // Customer name and index 0: burgers[0].dataValues.Customer.dataValues.customer_name
-        let burgers = resp.map((burgerObj, index) => {
+        // Normalize DB data into usable array of objects
+        let burgers = resp.map(burgerObj => {
           let b = burgerObj.dataValues;
           let burger = {
             id: b.id,
@@ -32,23 +32,11 @@ const getBurgers = (req, res, next) => {
           };
           return burger;
         });
-        console.log(burgers);
         // Attach array of burgers to request body
         req.body.burgers = burgers;
       }
       // Call next middleware in stack
       next();
-
-
-      // The perfect response object:
-      const perfectResponseObj = {
-        id: 1,
-        burger_name: "Big Mac",
-        isDevoured: false,
-        customer_name: "Ben"
-      };
-
-
     })
     // Catch and handle errors
     .catch(err => {
@@ -65,7 +53,7 @@ htmlRouter.route('/')
 
   // User visits homepage
   .get(getBurgers, (req, res, next) => {
-    res.render('index', req.body.burgers)
+    res.render('index', { burgers: req.body.burgers })
   });
 
 // Wildcard redirect
