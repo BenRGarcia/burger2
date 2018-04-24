@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     devoured: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    devoured_by_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        allowNull: true,
+        defaultValue: null,
+      }
     }
   }, { 
     timestamps: false 
