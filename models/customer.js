@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   // Define model (DB table)
-  const Customers = sequelize.define("Customers", {
+  const Customer = sequelize.define("Customer", {
     customer_name: {
       type: DataTypes.STRING,
       validate: {
@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define Association
   Customer.associate = models => {
-    models.Customers.hasMany(models.Burgers)
+    models.Customer.hasMany(models.Burger)
   };
-  
+
   // Return Customers object
-  return Customers;
+  return Customer;
 };

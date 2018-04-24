@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
   // Define model (DB table)
-  const Burgers = sequelize.define("Burgers", {
+  const Burger = sequelize.define("Burger", {
     burger_name: {
       type: DataTypes.STRING,
       validate: {
@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // Define association
-  Burgers.associate = models => {
-    models.Burgers.belongsTo(models.Customers);
+  Burger.associate = models => {
+    models.Burger.belongsTo(models.Customer);
   };
 
   // Return Burgers object
-  return burger;
+  return Burger;
 };
