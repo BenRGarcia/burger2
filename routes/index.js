@@ -2,17 +2,33 @@
 const express = require('express');
 const models = require('../models');
 
-// Middleware to return array of burger objects
+// Middleware to return sorted array of burger objects
 const getBurgers = (req, res, next) => {
-  // Query database for all burgers and associated customer name
-
-  // Compose array of burger objects
-
-  // Attach array to req body
-
-  // Call next middleware in stack
-
-  // Catch and handle errors
+  // Query database...
+  models.Burgers
+    // ...for all burgers...
+    .findAll({
+      // ...and their associated customer names...
+      include: [models.Customer],
+      // ...and order alphabetically by burger name
+      order: [
+        ['burger_name', 'ASC']
+      ]
+    })
+    // Compose array of burger objects
+    .then(burgers => {
+      // Debugging
+      console.log(burgers);
+      // Attach array of burgers to request body
+      req.body.burgers = burgers;
+      // Call next middleware in stack
+      next();
+    })
+    // Catch and handle errors
+    .catch(err => {
+      console.error(err);
+      next(err);
+    });
 };
 
 // Create router
@@ -27,12 +43,12 @@ htmlRouter.route('/')
   });
 
 // Wildcard redirect
-router.route('*', (req, res, next) => {
+htmlRouter.route('*', (req, res, next) => {
   res.redirect(301, '/');
 });
 
 // error handler (don't send stack trace unless in dev environment )
-app.use((err, req, res, next) => {
+htmlRouter.use((err, req, res, next) => {
   res
     .status(err.status || 500)
     .json({
@@ -42,3 +58,4 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = htmlRouter;
+
