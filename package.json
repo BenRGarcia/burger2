@@ -1,5 +1,5 @@
 {
-  "name": "burger",
+  "name": "burger2",
   "version": "1.0.0",
   "description": "A Node.js, Express, and Handlebars App",
   "main": "server.js",
@@ -10,19 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BenRGarcia/burger.git"
+    "url": "git+https://github.com/BenRGarcia/burger2.git"
   },
   "author": "ben@seebenprogram.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BenRGarcia/burger/issues"
+    "url": "https://github.com/BenRGarcia/burger2/issues"
   },
-  "homepage": "https://github.com/BenRGarcia/burger#readme",
+  "homepage": "https://github.com/BenRGarcia/burger2#readme",
   "dependencies": {
-    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.15.0",
-    "nodemon": "^1.17.3"
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.17.3",
+    "sequelize": "^4.37.6"
   }
 }
