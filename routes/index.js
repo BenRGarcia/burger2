@@ -53,7 +53,7 @@ htmlRouter.use((err, req, res, next) => {
     .status(err.status || 500)
     .json({
       message: err.message,
-      error: (app.get('env') === 'development') ? err : {}
+      error: (htmlRouter.get('env') === 'development') ? err : {}
     });
 });
 
