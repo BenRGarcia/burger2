@@ -1,8 +1,10 @@
 // Require dependency
 const express = require('express');
-const burger = require('../models/burger.js');
+const models = require('../models');
+// For brevity
+const burgers = models.burgers;
 
-// Input validation for POST/PUT requests
+/* // Input validation for POST/PUT requests
 const isValid = (req, res, next) => {
   // For define variable for expected 'burger' object
   const burger = req.body;
@@ -27,6 +29,7 @@ const isValid = (req, res, next) => {
   // Data is valid, send to next middleware in stack
   next();
 };
+ */
 
 // Create router
 const router = express.Router();
