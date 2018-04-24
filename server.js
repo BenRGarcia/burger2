@@ -2,8 +2,9 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const models = require('./models');
 
-// Dev env variables
+// Env variables
 require('dotenv').config()
 
 // Instantiate server
@@ -27,8 +28,10 @@ app.set('view engine', 'handlebars');
 const PORT = process.env.PORT || 8080;
 
 // Router
-const router = require('./controllers/burgers_controllers.js');
+const router = require('./routes/burgers.js');
 app.use('/', router);
 
-// Start server
-app.listen(PORT, () => console.log(`Server listening on: http://localhost:${PORT}`));
+// Initialize database
+models.sequelize.sync()
+  // Start server
+  .then(() => app.listen(PORT, () => console.log(`Server listening on: http://localhost:${PORT}`)));
