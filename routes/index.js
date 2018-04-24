@@ -4,7 +4,6 @@ const models = require('../models');
 
 // Middleware to return sorted array of burger objects
 const getBurgers = (req, res, next) => {
-  // console.log(models);
   // Query database...
   models.Burger
     // ...for all burgers...
@@ -55,11 +54,6 @@ htmlRouter.route('/')
   .get(getBurgers, (req, res, next) => {
     res.render('index', { burgers: req.body.burgers })
   });
-
-// Wildcard redirect
-htmlRouter.route('*', (req, res, next) => {
-  res.redirect(301, '/');
-});
 
 // error handler (don't send stack trace unless in dev environment )
 htmlRouter.use((err, req, res, next) => {
