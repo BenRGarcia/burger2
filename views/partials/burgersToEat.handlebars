@@ -1,0 +1,20 @@
+<div class="list-bg">
+  <h2>
+    2) Eat Burgers Here
+  </h2>
+    <ul class="text-left">
+      {{#each burgers}}
+        {{#unless devoured}}
+          <li>
+            <button
+              class="btn devour"
+              data-burger="{{burger_name}}"
+            >
+              Eat Now
+            </button> 
+            {{burger_name}}
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+<div class="list-bg">
+  <h2>
+    3) Burgers You Have Eaten
+  </h2>
+  <ul class="text-left">
+    {{#each burgers}}
+      {{#if devoured}}
+        <li>
+          {{burger_name}}
+        </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>

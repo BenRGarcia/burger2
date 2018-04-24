@@ -1,0 +1,28 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "A Node.js, Express, and Handlebars App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenRGarcia/burger.git"
+  },
+  "author": "ben@seebenprogram.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenRGarcia/burger/issues"
+  },
+  "homepage": "https://github.com/BenRGarcia/burger#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.17.3"
+  }
+}
