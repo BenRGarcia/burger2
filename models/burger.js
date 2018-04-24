@@ -1,4 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
+
+  // Define model (DB table)
   const Burgers = sequelize.define("Burgers", {
     burger_name: {
       type: DataTypes.STRING,
@@ -12,14 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    devoured_by_id: {
-      type: DataTypes.INTEGER,
-      validate: {
-        allowNull: true,
-        defaultValue: null,
-      }
-    }
   }, { 
-    timestamps: false 
-  }
-)};
+    timestamps: false,
+    underscored: true
+  });
+
+  // Define association
+  Burgers.associate = models => {
+    models.Burgers.belongsTo(models.Customers);
+  };
+
+  // Return Burgers object
+  return burger;
+};
