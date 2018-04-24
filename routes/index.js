@@ -4,8 +4,9 @@ const models = require('../models');
 
 // Middleware to return sorted array of burger objects
 const getBurgers = (req, res, next) => {
+  // console.log(models);
   // Query database...
-  models.Burgers
+  models.Burger
     // ...for all burgers...
     .findAll({
       // ...and their associated customer names...
@@ -39,7 +40,7 @@ htmlRouter.route('/')
 
   // User visits homepage
   .get(getBurgers, (req, res, next) => {
-    res.send('index', req.body.burgers)
+    res.render('index', req.body.burgers)
   });
 
 // Wildcard redirect
