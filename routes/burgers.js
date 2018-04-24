@@ -9,7 +9,7 @@ const apiRouter = express.Router();
 apiRouter.route('/')
 
   // Create new burger (and customer if not already in DB)
-  .post(isValid, (req, res, next) => {
+  .post((req, res, next) => {
 
   })
 

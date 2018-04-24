@@ -15,17 +15,19 @@ const getBurgers = (req, res, next) => {
   // Catch and handle errors
 };
 
-// Create routers
+// Create router
 const htmlRouter = express.Router();
 
 // Define methods for PATH '/'
 htmlRouter.route('/')
+
+  // User visits homepage
   .get(getBurgers, (req, res, next) => {
     res.send('index', req.body.burgers)
   });
 
 // Wildcard redirect
-router.get('*', (req, res, next) => {
+router.route('*', (req, res, next) => {
   res.redirect(301, '/');
 });
 
