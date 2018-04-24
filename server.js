@@ -27,9 +27,30 @@ app.set('view engine', 'handlebars');
 // Define port
 const PORT = process.env.PORT || 8080;
 
-// Router
-const router = require('./routes/burgers.js');
-app.use('/', router);
+// HTML Router
+const htmlRouter = require('./routes/index.js');
+app.use('/', htmlRouter);
+
+// API Router
+const apiRouter = require('./routes/burgers.js');
+app.use('/api/burgers', apiRouter);
+
+// Catch 404, forward to error handler
+app.use((req, res, next) => {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler (don't send stack trace unless in dev environment )
+app.use((err, req, res, next) => {
+  res
+    .status(err.status || 500)
+    .json({
+      message: err.message,
+      error: (app.get('env') === 'development') ? err : {}
+    });
+});
 
 // Initialize database
 models.sequelize.sync()
