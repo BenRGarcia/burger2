@@ -10,11 +10,13 @@ $(function() {
     e.preventDefault();
     // Get input from DOM
     let burger_name = $('#burger').val().trim();
-    let burger = { burger_name };
+    let customer_name = $('#customer').val().trim();
+    let burger = { burger_name, customer_name };
     // Remove DOM element input value
     $('#burger').val("");
+    $('#customer').val("");
     // Send POST request
-    $.post('/burgers', burger)
+    $.post('/api/burgers', burger)
       // On success, reload page
       .then(res => window.location.reload(true))
       .catch(err => console.error(err));
@@ -26,11 +28,11 @@ $(function() {
   // On click...
   $('.container').on('click', '.devour', e => {
     // Get input from DOM
-    let burger = { burger_name: $(e.target).data("burger") };
+    let burger = {id: $(e.target).data("burger")};
     // Send PUT request
     $.ajax({
       method: "PUT",
-      url: "/burgers",
+      url: "/api/burgers",
       data: burger
     })
       // On success, reload page
@@ -46,7 +48,7 @@ $(function() {
     // Send DELETE request
     $.ajax({
       method: "DELETE",
-      url: "/burgers"
+      url: "/api/burgers"
     })
       // On success, reload page
       .then(res => window.location.reload(true))
