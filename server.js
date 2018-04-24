@@ -3,6 +3,9 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 
+// Dev env variables
+require('dotenv').config()
+
 // Instantiate server
 const app = express();
 
