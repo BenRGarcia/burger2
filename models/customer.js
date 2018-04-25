@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       notNull: true,
       validate: {
         len: [1,64],
-        isAlpha: true
+        is: /[\w ]/g
       }
     },
   }, {
@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true
     }
   );
+
+  // Define association
+  Customer.associate = models => {
+    models.Customer.hasOne(models.Burger);
+  };
 
   // Return Customers object
   return Customer;
