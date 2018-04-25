@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
   const Burger = sequelize.define("Burger", {
     burger_name: {
       type: DataTypes.STRING,
+      notNull: true,
       validate: {
-        // allowNull: false,
         len: [1,64],
         isAlpha: true
       }
