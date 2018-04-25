@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     burger_name: {
       type: DataTypes.STRING,
       validate: {
-        notNull: true,
+        // allowNull: false,
         len: [1,64],
         isAlpha: true
       }
