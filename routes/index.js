@@ -10,7 +10,10 @@ const getBurgers = (req, res, next) => {
     .findAll({
       attributes: ['id', 'burger_name', 'is_devoured'],
       // ...and their associated customer names...
-      include: [models.Customer],
+      include: [{
+        model: models.Customer,
+        required: true
+      }],
       // ...and order alphabetically by burger name
       order: [
         ['burger_name', 'ASC']
@@ -66,4 +69,3 @@ htmlRouter.use((err, req, res, next) => {
 });
 
 module.exports = htmlRouter;
-
