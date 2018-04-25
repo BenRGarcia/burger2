@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       notNull: true,
       validate: {
         len: [1,64],
-        is: /[\w ]/g
+        is: /[\w ]/g  // A-Z, a-z, 0-9, or a space
       }
     },
   }, {
