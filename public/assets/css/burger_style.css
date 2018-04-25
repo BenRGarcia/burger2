@@ -37,6 +37,6 @@ li {
   padding-bottom: 10px;
 }
 
-#source-code {
+#source-code, #sequelize {
   color: inherit;
 }
