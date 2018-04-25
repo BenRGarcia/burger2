@@ -28,12 +28,18 @@ apiRouter.route('/')
 
   // Update burger to 'devoured: true'
   .put((req, res, next) => {
-
+    const is_devoured = true;
+    const id = req.body.id;
+    models.Burger.update({is_devoured},{
+      where: {id}
+    })
+      .then(() => res.status(204).send())
+      .catch(err => console.error(err));
   })
 
   // Delete all burgers and customers
   .delete((req, res, next) => {
-
+    
   });
 
 module.exports = apiRouter;
