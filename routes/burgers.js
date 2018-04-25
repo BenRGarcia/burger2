@@ -23,7 +23,10 @@ apiRouter.route('/')
         }]
       })
       .then(() => res.status(201).send())
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        res.status(500).send();
+      })
   })
 
   // Update burger to 'devoured: true'
@@ -34,18 +37,23 @@ apiRouter.route('/')
       where: {id}
     })
       .then(() => res.status(204).send())
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        res.status(500).send();
+      })
   })
 
   // Delete all burgers and customers
   .delete((req, res, next) => {
-    // models.Burger.truncate({ cascade: true })
     models.Burger.destroy({ where: {} })
       .then(() => {
         return models.Customer.destroy({ where: {} })
       })
       .then(() => res.status(204).send())
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        res.status(500).send();
+      })
   });
 
 module.exports = apiRouter;
