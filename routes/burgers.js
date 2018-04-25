@@ -8,27 +8,22 @@ const apiRouter = express.Router();
 // Define methods for PATH '/api/burgers'
 apiRouter.route('/')
 
-  // Create new burger (and customer if not already in DB)
+  // Create new burger (and customer if not yet in DB)
   .post((req, res, next) => {
-    // First create new customer
-    models.Customer.findOrCreate({
-      where: {
-        customer_name: req.body.customer_name
-      }
-    })
-      .spread((user, created) => {
-        console.log(user.get({plain: true}).id);
-        res.status(201).send();
+    // Parse out data from request body
+    const customer_name = req.body.customer_name;
+    const burger_name = req.body.burger_name;
+    // Create new burger with association to customer id
+    models.Burger.create({
+        burger_name,
+        Customer: {customer_name}
+      },{
+        include: [{
+          association: models.Burger.belongsTo(models.Customer)
+        }]
       })
-      .then()
+      .then(() => res.status(201).send())
       .catch(err => console.error(err));
-      /* .then(resp => {
-
-      }); */
-    // Then create burger
-    /* models.Burger.create({
-      burger_name: req.body.burger_name
-    }); */
   })
 
   // Update burger to 'devoured: true'
