@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const Customer = sequelize.define("Customer", {
     customer_name: {
       type: DataTypes.STRING,
+      notNull: true,
       validate: {
         len: [1,64],
         isAlpha: true
@@ -14,11 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true
     }
   );
-
-  // Define Association
-  Customer.associate = models => {
-    models.Customer.hasMany(models.Burger)
-  };
 
   // Return Customers object
   return Customer;
