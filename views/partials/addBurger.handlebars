@@ -8,15 +8,20 @@
       type="text"
       class="form-control mx-auto mb-2"
       placeholder="ex. Double Cheeseburger"
+      pattern="[\w ]{1,64}"
       required
     >
     <input
       id="customer"
       type="text"
-      class="form-control mx-auto mb-2"
+      class="form-control mx-auto"
       placeholder="ex. John Smith (name)"
+      pattern="[\w ]{1,64}"
       required
     >
+    <small class="d-block">
+      Valid characters: letters, numbers, and spaces
+    </small>
     <button
       type="submit"
       class="btn"
