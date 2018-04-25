@@ -39,7 +39,13 @@ apiRouter.route('/')
 
   // Delete all burgers and customers
   .delete((req, res, next) => {
-    
+    // models.Burger.truncate({ cascade: true })
+    models.Burger.destroy({ where: {} })
+      .then(() => {
+        return models.Customer.destroy({ where: {} })
+      })
+      .then(() => res.status(204).send())
+      .catch(err => console.error(err));
   });
 
 module.exports = apiRouter;
